@@ -76,7 +76,7 @@ test('package metadata is publish-ready and points to the confirmed repository',
 test('public Alpha gate report is explicit about what was and was not published', async () => {
   const gate = JSON.parse(await readFile(path.join(ROOT, 'reports', 'public-alpha-release-gate.json'), 'utf8'));
   assert.equal(gate.status, 'PASS');
-  assert.equal(gate.result, 'PUBLIC ALPHA RELEASE CANDIDATE: PASS');
+  assert.equal(gate.result, 'PUBLIC ALPHA RELEASE: PASS');
   assert.equal(gate.package.reports_included, false);
   assert.equal(gate.package.private_project_files_included, false);
   assert.equal(gate.release_checks.github_actions, 'PASS');
@@ -84,6 +84,9 @@ test('public Alpha gate report is explicit about what was and was not published'
   assert.equal(gate.not_run.github_repository_creation, 'PASS');
   assert.equal(gate.not_run.git_push, 'PASS');
   assert.equal(gate.not_run.npm_publish, 'NOT_RUN');
+  assert.equal(gate.release.tag, 'v0.1.0-alpha.1');
+  assert.equal(gate.release.pre_release, true);
+  assert.equal(gate.release.published, true);
 });
 
 test('all JSON schemas parse and CLI help exits successfully', async () => {

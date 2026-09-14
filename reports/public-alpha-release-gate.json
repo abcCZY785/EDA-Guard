@@ -2,7 +2,7 @@
   "report_schema_version": "0.1.0",
   "gate": "PUBLIC ALPHA RELEASE GATE",
   "status": "PASS",
-  "generated_at": "2026-09-14T17:42:34+08:00",
+  "generated_at": "2026-09-14T17:46:37+08:00",
   "release_candidate": "PASS",
   "core_gates": {
     "basic_capture": "PASS",
@@ -35,7 +35,8 @@
     "package_dry_run": "PASS",
     "license_audit": "PASS",
     "runtime_dependencies": 0,
-    "github_actions": "PASS"
+    "github_actions": "PASS",
+    "github_release": "PASS"
   },
   "tests": {
     "command": "npm test",
@@ -67,6 +68,15 @@
     "reports_included": false,
     "private_project_files_included": false
   },
+  "release": {
+    "tag": "v0.1.0-alpha.1",
+    "title": "EDA-Guard v0.1.0-alpha.1",
+    "url": "https://github.com/abcCZY785/EDA-Guard/releases/tag/v0.1.0-alpha.1",
+    "target": "main",
+    "commit": "386b210132382047f6761c2c37140b86851cce6c",
+    "pre_release": true,
+    "published": true
+  },
   "naming": {
     "repository_candidate": "EDA-Guard",
     "package_candidate": "edaguard",
@@ -77,9 +87,8 @@
   "not_run": {
     "github_repository_creation": "PASS",
     "git_push": "PASS",
-    "npm_publish": "NOT_RUN",
-    "github_release_publication": "NOT_RUN"
+    "npm_publish": "NOT_RUN"
   },
-  "result": "PUBLIC ALPHA RELEASE CANDIDATE: PASS",
-  "next_action": "Push the committed main branch, verify GitHub Actions, then prepare the v0.1.0-alpha.1 GitHub Release. npm publish remains intentionally out of scope."
+  "result": "PUBLIC ALPHA RELEASE: PASS",
+  "next_action": "Observe community feedback. npm publish remains intentionally out of scope until explicitly approved."
 }
