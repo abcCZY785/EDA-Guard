@@ -1,0 +1,78 @@
+{
+  "artifact_type": "edaguard.restart-comparison",
+  "schema_version": "0.1.0",
+  "generated_at": "2026-09-14T09:53:04+08:00",
+  "profile": "pcb-basic-v1",
+  "baseline_artifact": "reports/live-capture.json",
+  "after_restart_artifact": "reports/live-capture-restart-c.json",
+  "preflight": {
+    "easyeda_windows_closed_by_user": true,
+    "auto_save_performed": false
+  },
+  "identity": {
+    "project_uuid_equal": true,
+    "document_uuid_equal": true,
+    "document_type_equal": true,
+    "project_uuid": "redacted-same-project",
+    "document_uuid": "redacted-same-pcb",
+    "document_type": "pcb"
+  },
+  "validity": {
+    "baseline_valid_snapshot": true,
+    "after_restart_valid_snapshot": true,
+    "baseline_repeated_core_equal": true,
+    "after_restart_repeated_core_equal": true
+  },
+  "runtime_separation": {
+    "window_changed": true,
+    "design_hash_inputs_exclude_runtime_metadata": true
+  },
+  "facet_comparison": {
+    "components": {
+      "before": "238648a4edc2da49ec964c03fb21a942045409bd8ea00f082416a699afdcd453",
+      "after": "238648a4edc2da49ec964c03fb21a942045409bd8ea00f082416a699afdcd453",
+      "equal": true
+    },
+    "pads": {
+      "before": "52fc2384d02fb409f584e4a9db1a278fe3aab22e5ddec33d315749ba6c1f007d",
+      "after": "52fc2384d02fb409f584e4a9db1a278fe3aab22e5ddec33d315749ba6c1f007d",
+      "equal": true
+    },
+    "connectivity": {
+      "before": "72805ab13dec760a6560e5564615dc1eaf73ec9ccd867156ba47acc132325d3b",
+      "after": "72805ab13dec760a6560e5564615dc1eaf73ec9ccd867156ba47acc132325d3b",
+      "equal": true
+    },
+    "geometry": {
+      "before": "aa736700751b4a740e1761384bf1d11ea91a89b22143b3811fb1e29694d76b44",
+      "after": "aa736700751b4a740e1761384bf1d11ea91a89b22143b3811fb1e29694d76b44",
+      "equal": true
+    },
+    "vias": {
+      "before": "7cf758b285621cae4ef3727b1531d20a6c39b08308b26832fcddc6a73f2e40b8",
+      "after": "7cf758b285621cae4ef3727b1531d20a6c39b08308b26832fcddc6a73f2e40b8",
+      "equal": true
+    },
+    "bom": {
+      "before": "25715964d7bea0a7279ea15b12ddffb3ddf7430965fab2de853754fd71a4fd5d",
+      "after": "25715964d7bea0a7279ea15b12ddffb3ddf7430965fab2de853754fd71a4fd5d",
+      "equal": true
+    },
+    "rules": {
+      "before": "85d97bd7df8ad5ed83daa4704736a230d6e242222c28320579a199abe2a04af9",
+      "after": "85d97bd7df8ad5ed83daa4704736a230d6e242222c28320579a199abe2a04af9",
+      "equal": true
+    },
+    "layers": {
+      "before": "2e95c3a87099b4646fada047bbbd497a4c1bc4c27323bef22451a3991052dc2a",
+      "after": "2e95c3a87099b4646fada047bbbd497a4c1bc4c27323bef22451a3991052dc2a",
+      "equal": true
+    }
+  },
+  "snapshot_hash": {
+    "before": "6c1d410c17af7f4d55a1a8963dea688f0cfa75e42a997731a00a1546352b395d",
+    "after": "6c1d410c17af7f4d55a1a8963dea688f0cfa75e42a997731a00a1546352b395d",
+    "equal": true
+  },
+  "result": "PASS"
+}

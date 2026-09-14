@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.1.0",
+  "purpose": "Offline D0-D15 vectors for edaguard.semantic-diff.v1",
+  "source_test": "tests/semantic-diff.test.mjs",
+  "vectors": [
+    {"id": "D0", "mutation": "identical snapshots", "expected": ["zero_diff"]},
+    {"id": "D1", "mutation": "move one component", "expected": ["component_moved"]},
+    {"id": "D2", "mutation": "rotate one component", "expected": ["component_rotated"]},
+    {"id": "D3", "mutation": "change footprint", "expected": ["property_changed:footprint"]},
+    {"id": "D4", "mutation": "change value", "expected": ["property_changed:value"]},
+    {"id": "D5", "mutation": "clear LCSC supplierId", "expected": ["property_changed:supplierId", "bom_supplier_id_changed"]},
+    {"id": "D6", "mutation": "add component and BOM item", "expected": ["component_added", "bom_item_added"]},
+    {"id": "D7", "mutation": "remove component and BOM item", "expected": ["component_removed", "bom_item_removed"]},
+    {"id": "D8", "mutation": "remove connectivity member", "expected": ["connectivity_member_removed"]},
+    {"id": "D9", "mutation": "add connectivity member", "expected": ["connectivity_member_added"]},
+    {"id": "D10", "mutation": "move pin from Net A to Net B", "expected": ["pin_reassigned", "raw_connectivity_events"]},
+    {"id": "D11", "mutation": "change board bounds", "expected": ["board_bounds_changed"]},
+    {"id": "D12", "mutation": "change clearance rule", "expected": ["rule_changed"]},
+    {"id": "D13", "mutation": "change routed segment/via", "expected": ["routing_changed"]},
+    {"id": "D14", "mutation": "multiple simultaneous changes", "expected": ["deterministic_ordering"]},
+    {"id": "D15", "mutation": "ambiguous identity", "expected": ["ambiguous_match:AMBIGUOUS_MATCH"]}
+  ]
+}

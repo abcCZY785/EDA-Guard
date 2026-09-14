@@ -1,0 +1,163 @@
+{
+  "report_schema_version": "0.2.0",
+  "generated_at": "2026-09-14T09:53:04+08:00",
+  "gate_model": "A_BASIC_SNAPSHOT_RELIABILITY_AND_B_FULL_CAPTURE_COVERAGE",
+  "gate": "PASS",
+  "diff_ready": true,
+  "basic_snapshot_reliability_gate": {
+    "name": "Gate A — Basic Snapshot Reliability",
+    "status": "PASS",
+    "diff_ready": true,
+    "blocking_for_basic_diff": false,
+    "profile_scope": ["pcb-basic-v1", "schematic-basic-v1"],
+    "blocking_items": [],
+    "offline_harness": "PASS",
+    "live_f6_a": "PASS",
+    "live_f6_b": "PASS"
+  },
+  "full_capture_coverage_gate": {
+    "name": "Gate B — Full Capture Coverage",
+    "status": "OPEN",
+    "diff_ready": false,
+    "blocking_for_basic_diff": false,
+    "advanced_scope": ["pcb-full-v1", "schematic-full-v1"],
+    "open_items": [
+      "non-empty Arc outline",
+      "non-empty copper pour/region/fill",
+      "non-empty net class/differential pair/length group",
+      "non-empty physical stackup/material data",
+      "detailed positive DRC schema"
+    ]
+  },
+  "environment": {
+    "easyeda_editor": "3.2.149.88089769",
+    "api_skill_local": "1.1.28",
+    "copilot_mcp_local": "1.1.8",
+    "bridge": "http://127.0.0.1:49620",
+    "window_id": "redacted-local-window",
+    "project_uuid": "redacted-local-project",
+    "document_uuid": "redacted-local-document",
+    "document_type": "pcb"
+  },
+  "profiles": {
+    "pcb-basic-v1": {
+      "required": ["pcb_components", "pcb_pads", "pcb_lines", "pcb_polylines", "pcb_vias", "pcb_nets", "bom"],
+      "advanced_optional": ["pcb_arcs", "pcb_pours", "pcb_regions", "pcb_fills", "pcb_rules", "pcb_layers", "pcb_drc"]
+    },
+    "schematic-basic-v1": {
+      "required": ["schematic_components", "schematic_pins", "schematic_wires", "manufacture_nets", "bom"],
+      "advanced_optional": ["schematic_nets", "schematic_drc"]
+    }
+  },
+  "live_capture": {
+    "artifact": "reports/live-capture.json",
+    "profile": "pcb-basic-v1",
+    "valid_snapshot": true,
+    "identity_stable": true,
+    "repeated_core_equal": true,
+    "snapshot_hash": "6c1d410c17af7f4d55a1a8963dea688f0cfa75e42a997731a00a1546352b395d",
+    "counts": {
+      "components": 14,
+      "pads": 47,
+      "lines": 69,
+      "arcs": 0,
+      "polylines": 1,
+      "vias": 2,
+      "pcb_nets": 10,
+      "pours": 0,
+      "regions": 0,
+      "fills": 0
+    }
+  },
+  "live_schematic_capture": {
+    "artifact": "reports/live-capture-schematic.json",
+    "profile": "schematic-basic-v1",
+    "valid_snapshot": true,
+    "identity_stable": true,
+    "repeated_core_equal": true,
+    "snapshot_hash": "1f1adfa3dc468f31603bd2f122b6d06abeefcfd0049035a1c37288c0184d96c6",
+    "counts": {
+      "all_schematic_primitives": 16,
+      "business_components_in_bom": 14,
+      "pins": 48,
+      "wires": 10,
+      "direct_api_nets": 0,
+      "manufacture_nets": 10
+    },
+    "cross_domain_net_names_equal": true,
+    "cross_domain_business_unique_ids_equal": true,
+    "warning": "sch_Net.getAllNets() is verified_empty; manufacture Allegro netlist is selected for connectivity."
+  },
+  "live_context_reliability": {
+    "f6_a_multi_window": {
+      "status": "PASS",
+      "sequence": ["A1", "B1", "A2", "B2"],
+      "window_labels": { "A": "redacted-window-a", "B": "redacted-window-b" },
+      "project_count": 2,
+      "profiles": ["pcb-basic-v1", "schematic-basic-v1"],
+      "same_window_hashes_equal": { "A1_A2": true, "B1_B2": true },
+      "different_project_hashes_distinct": true,
+      "wrong_binding_fail_closed": "PASS (offline harness)"
+    },
+    "f6_b_document_switching": {
+      "status": "PASS",
+      "sequence": ["schematic", "pcb", "schematic", "pcb"],
+      "project_identity_stable": true,
+      "document_identities_correct": true,
+      "same_document_hashes_equal": { "pcb_A1_A2": true, "schematic_B1_B2": true },
+      "restored_document_type": "pcb"
+    },
+    "f6_c_restart": {
+      "status": "PASS",
+      "bridge_restart": {
+        "status": "PASS",
+        "design_hash_equal": true,
+        "identity_equal": true,
+        "runtime_window_changed": true,
+        "repeat_equal_after_restart": true
+      },
+      "easyeda_restart": {
+        "status": "PASS",
+        "preflight": "USER_CONFIRMED_ALL_WINDOWS_CLOSED",
+        "auto_save": false,
+        "baseline_artifact": "reports/live-capture.json",
+        "after_restart_artifact": "reports/live-capture-restart-c.json",
+        "identity_equal": true,
+        "snapshot_hash_equal": true,
+        "facet_hashes_equal": true,
+        "runtime_window_changed": true,
+        "baseline_window": "redacted-before-restart-window",
+        "after_restart_window": "redacted-after-restart-window"
+      },
+      "offline_runtime_hash_harness": "PASS",
+      "promotion": "RESTART_VALIDATED"
+    }
+  },
+  "criteria": [
+    { "id": "identity-before-after", "gate": "A", "status": "PASS", "blocks_basic_diff": false, "summary": "Explicit window capture checked project/document/type before and after." },
+    { "id": "same-session-repeatability", "gate": "A", "status": "PASS", "blocks_basic_diff": false, "summary": "Two consecutive canonical critical reads produced equal hashes." },
+    { "id": "canonical-model-and-hashes", "gate": "A", "status": "PASS", "blocks_basic_diff": false, "summary": "Integer-nm/microdegree canonical snapshot and profile-selected SHA-256 design hashes are emitted." },
+    { "id": "runtime-design-hash-separation", "gate": "A", "status": "PASS", "blocks_basic_diff": false, "summary": "Window ID, Bridge URL, timestamps and source versions are runtime metadata and do not enter the design hash." },
+    { "id": "mvp-pcb-facets", "gate": "A", "status": "PASS", "blocks_basic_diff": false, "summary": "Basic profile reads components, pads, lines, polyline geometry, vias and PCB net names." },
+    { "id": "schematic-connectivity-cross-check", "gate": "A", "status": "PASS", "blocks_basic_diff": false, "summary": "Manufacture Allegro netlist contained ten nets and matched PCB API net names in the live investigation." },
+    { "id": "status-semantics", "gate": "A", "status": "PASS", "blocks_basic_diff": false, "summary": "Offline tests keep verified_empty, unsupported and error distinct." },
+    { "id": "f6-a-multi-window-isolation", "gate": "A", "status": "PASS", "blocks_basic_diff": false, "summary": "Live A→B→A→B over two different projects kept each explicit window's identity/hash isolated; offline wrong-binding harness fails closed." },
+    { "id": "f6-b-document-switching", "gate": "A", "status": "PASS", "blocks_basic_diff": false, "summary": "Live schematic→PCB→schematic→PCB in one project reported the expected document UUID/type on every read and restored PCB." },
+    { "id": "f6-c-restart-validation", "gate": "A", "status": "PASS", "blocks_basic_diff": false, "summary": "After a full EasyEDA application close/relaunch, the rediscovered window reported the same project/document/type and equal canonical facet and snapshot hashes; only runtime window identity changed." },
+    { "id": "outline-line-arc-polyline", "gate": "B", "status": "BLOCKED", "blocks_basic_diff": false, "summary": "Line and Polyline observed; non-empty Arc fixture not yet run." },
+    { "id": "copper-pours-regions-fills", "gate": "B", "status": "NOT_RUN", "blocks_basic_diff": false, "summary": "Current populated fixture returned verified_empty for all three; no non-empty proof." },
+    { "id": "advanced-rules-stackup", "gate": "B", "status": "BLOCKED", "blocks_basic_diff": false, "summary": "Rules/layers read, but non-empty net classes, differential/length groups and physical stackup are unverified." },
+    { "id": "detailed-drc-schema", "gate": "B", "status": "BLOCKED", "blocks_basic_diff": false, "summary": "3.2.149 returns PCB empty array and schematic aggregate warnings; positive detailed schema requires a newer-version fixture." }
+  ],
+  "next_gate_actions": {
+    "gate_a": [
+      "Gate A complete: Basic Capture Foundation v0.1 is frozen.",
+      "Do not expand Capture scope except for a blocking reliability bug."
+    ],
+    "after_gate_a_pass": ["Implement Basic Semantic Diff MVP for components, properties, BOM, connectivity, board/rules summary and routing_changed."],
+    "gate_b": [
+      "Create non-empty pour/region/fill, Arc outline, net-class, differential-pair, length-group and stackup fixtures.",
+      "Run a positive DRC fixture on an editor version that returns detailed violation objects."
+    ]
+  }
+}

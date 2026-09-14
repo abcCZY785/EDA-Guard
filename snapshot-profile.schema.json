@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://edaguard.dev/schema/snapshot-profile.schema.json",
+  "title": "EDA-Guard Snapshot Profile",
+  "type": "object",
+  "required": ["name", "domain", "schema_version", "required_facets", "optional_facets", "hash_facets", "advanced_non_blocking"],
+  "properties": {
+    "name": { "type": "string", "pattern": "^(pcb|schematic)-(basic|full)-v[0-9]+$" },
+    "domain": { "enum": ["pcb", "schematic"] },
+    "schema_version": { "type": "string" },
+    "required_facets": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "optional_facets": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "hash_facets": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "advanced_non_blocking": { "type": "boolean" }
+  }
+}

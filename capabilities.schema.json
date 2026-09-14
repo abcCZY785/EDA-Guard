@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://edaguard.dev/schema/capabilities.schema.json",
+  "title": "EDA-Guard capability presence probe",
+  "type": "object",
+  "properties": {
+    "identity": { "type": "object", "additionalProperties": { "type": "boolean" } },
+    "schematic": { "type": "object", "additionalProperties": { "type": "boolean" } },
+    "pcb": { "type": "object", "additionalProperties": { "type": "boolean" } }
+  }
+}

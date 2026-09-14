@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://edaguard.dev/schemas/assertion-result.schema.json",
+  "title": "EDA-Guard Hardware Assertion Result",
+  "description": "Deterministic result of evaluating hardware assertions against one valid capture.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema", "snapshot_hash", "passed", "summary", "results"],
+  "properties": {
+    "schema": { "const": "edaguard.assertion-result.v1" },
+    "schema_version": { "type": "string" },
+    "name": { "type": "string" },
+    "snapshot_hash": { "type": ["string", "null"] },
+    "compiled_snapshot_hash": { "type": ["string", "null"] },
+    "snapshot_identity": { "type": "object", "additionalProperties": true },
+    "strict": { "type": "boolean" },
+    "status": { "enum": ["PASS", "FAIL", "ABORTED", "INVALID_POLICY", "IDENTITY_MISMATCH"] },
+    "valid": { "type": "boolean" },
+    "passed": { "type": "boolean" },
+    "summary": {
+      "type": "object",
+      "required": ["pass", "fail", "unverifiable", "total"],
+      "properties": {
+        "pass": { "type": "integer", "minimum": 0 },
+        "fail": { "type": "integer", "minimum": 0 },
+        "unverifiable": { "type": "integer", "minimum": 0 },
+        "total": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": true
+    },
+    "results": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/result" }
+    },
+    "errors": { "type": "array" },
+    "warnings": { "type": "array" }
+  },
+  "$defs": {
+    "result": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["rule_id", "type", "result", "expected", "actual", "reason", "evidence"],
+      "properties": {
+        "rule_id": { "type": "string", "minLength": 1 },
+        "type": { "type": "string", "minLength": 1 },
+        "description": { "type": "string" },
+        "severity": { "enum": ["INFO", "WARNING", "ERROR", "CRITICAL"] },
+        "result": { "enum": ["PASS", "FAIL", "UNVERIFIABLE"] },
+        "expected": {},
+        "actual": {},
+        "reason": { "type": ["string", "null"] },
+        "evidence": { "type": "object", "additionalProperties": true }
+      }
+    }
+  }
+}

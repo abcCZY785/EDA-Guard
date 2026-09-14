@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://edaguard.dev/schema/canonical-snapshot.schema.json",
+  "title": "EDA-Guard Canonical Snapshot",
+  "type": "object",
+  "required": ["schema_version", "units", "identity", "components", "connectivity", "geometry", "facet_hashes", "snapshot_hash"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "units": {
+      "type": "object",
+      "required": ["length", "angle"],
+      "properties": { "length": { "const": "nm" }, "angle": { "const": "microdegree" } }
+    },
+    "identity": {
+      "type": "object",
+      "required": ["project_uuid", "document_uuid", "document_type"],
+      "properties": {
+        "project_uuid": { "type": ["string", "null"] },
+        "document_uuid": { "type": ["string", "null"] },
+        "document_type": { "enum": ["pcb", "schematic", "unknown"] }
+      }
+    },
+    "components": { "type": "array" },
+    "pads": { "type": "array" },
+    "connectivity": { "type": "object" },
+    "geometry": { "type": "object" },
+    "vias": { "type": "array" },
+    "bom": { "type": "array" },
+    "rules": { "type": ["object", "array", "null"] },
+    "layers": { "type": ["object", "array", "null"] },
+    "facet_hashes": { "type": "object", "additionalProperties": { "type": "string" } },
+    "snapshot_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  },
+  "$defs": {
+    "validity": {
+      "type": "object",
+      "required": ["valid_snapshot", "fail_closed", "identity_stable", "repeated_core_equal"],
+      "properties": {
+        "valid_snapshot": { "type": "boolean" },
+        "fail_closed": { "const": true },
+        "identity_stable": { "type": "boolean" },
+        "repeated_core_equal": { "type": "boolean" },
+        "repeated_reads": { "type": "integer", "minimum": 1 },
+        "profile_name": { "type": ["string", "null"] },
+        "profile": { "type": ["object", "null"] },
+        "reasons": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

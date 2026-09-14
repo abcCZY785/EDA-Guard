@@ -1,0 +1,20 @@
+{
+  "schema": "edaguard.intent.v1",
+  "description": "Move C12 without changing circuit semantics or BOM",
+  "default_action": "deny",
+  "default_deny": true,
+  "required": [
+    { "id": "REQ-001", "event": "component_moved", "component": "C12" }
+  ],
+  "allowed": [
+    { "id": "ALLOW-001", "event": "component_moved", "component": "C12" }
+  ],
+  "forbidden": [
+    { "id": "DENY-001", "category": "connectivity" },
+    { "id": "DENY-002", "category": "bom" },
+    { "id": "DENY-003", "event": "component_added" },
+    { "id": "DENY-004", "event": "component_removed" },
+    { "id": "DENY-005", "category": "properties" },
+    { "id": "DENY-006", "field": "footprint" }
+  ]
+}

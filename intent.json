@@ -1,0 +1,20 @@
+{
+  "schema": "edaguard.intent.v1",
+  "intent_id": "demo-move-c12",
+  "description": "Move C12 closer to U1 without changing circuit semantics or BOM",
+  "default_action": "deny",
+  "default_deny": true,
+  "required": [
+    { "id": "DEMO-REQ-C12-MOVE", "event": "component_moved", "component": "C12" }
+  ],
+  "allowed": [
+    { "id": "DEMO-ALLOW-C12-MOVE", "event": "component_moved", "component": "C12" }
+  ],
+  "forbidden": [
+    { "id": "DEMO-DENY-CONNECTIVITY", "category": "connectivity" },
+    { "id": "DEMO-DENY-BOM", "category": "bom" },
+    { "id": "DEMO-DENY-PROPERTIES", "category": "properties" },
+    { "id": "DEMO-DENY-ADDITIONS", "event": "component_added" },
+    { "id": "DEMO-DENY-REMOVALS", "event": "component_removed" }
+  ]
+}

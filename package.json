@@ -1,0 +1,45 @@
+{
+  "name": "edaguard",
+  "version": "0.1.0-alpha.1",
+  "description": "Safety checks for AI-generated PCB designs: capture, semantic diff, intent lock, and hardware assertions",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abcCZY785/EDA-Guard.git"
+  },
+  "bugs": {
+    "url": "https://github.com/abcCZY785/EDA-Guard/issues"
+  },
+  "homepage": "https://github.com/abcCZY785/EDA-Guard#readme",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "bin": { "edaguard": "src/cli.mjs" },
+  "files": [
+    "src",
+    "scripts",
+    "schemas",
+    "rules",
+    "tests",
+    "examples",
+    "docs",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
+    "ROADMAP.md",
+    "THIRD_PARTY_NOTICES.md",
+    "package.json"
+  ],
+  "keywords": ["eda", "pcb", "easyeda", "hardware", "ai", "semantic-diff", "design-verification"],
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "doctor": "node src/cli.mjs doctor",
+    "capture": "node src/cli.mjs capture",
+    "diff": "node src/cli.mjs diff",
+    "gate": "node src/cli.mjs gate",
+    "release:audit": "node scripts/public-release-audit.mjs",
+    "release:example": "node scripts/example-smoke.mjs",
+    "pack:check": "npm pack --dry-run"
+  }
+}

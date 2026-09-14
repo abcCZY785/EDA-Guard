@@ -1,0 +1,84 @@
+{
+  "report_schema_version": "0.1.0",
+  "gate": "PUBLIC ALPHA RELEASE GATE",
+  "status": "PASS",
+  "generated_at": "2026-09-14T15:59:28+08:00",
+  "release_candidate": "PASS",
+  "core_gates": {
+    "basic_capture": "PASS",
+    "semantic_diff": "PASS",
+    "intent_lock": "PASS",
+    "hardware_assertions": "PASS"
+  },
+  "core_evidence": {
+    "capture_report": "reports/capture-reliability-gate.json",
+    "restart_comparison": "reports/restart-comparison.json",
+    "semantic_diff_report": "reports/semantic-diff-gate.json",
+    "intent_lock_report": "reports/intent-lock-gate.json",
+    "hardware_assertions_report": "reports/hardware-assertions-gate.json"
+  },
+  "release_checks": {
+    "public_tree_sanitization": "PASS",
+    "sanitization_report": "reports/public-release-sanitization.json",
+    "publishable_files_scanned": 79,
+    "local_artifacts_excluded": 47,
+    "no_publishable_absolute_paths": "PASS",
+    "no_publishable_credentials": "PASS",
+    "no_publishable_runtime_uuids": "PASS",
+    "no_private_project_files": "PASS",
+    "schema_parse": "PASS",
+    "docs_local_links": "PASS",
+    "cli_help": "PASS",
+    "offline_example": "PASS",
+    "deterministic_replay": "PASS",
+    "package_metadata": "PASS",
+    "package_dry_run": "PASS",
+    "license_audit": "PASS",
+    "runtime_dependencies": 0
+  },
+  "tests": {
+    "command": "npm test",
+    "tests": 84,
+    "passed": 84,
+    "failed": 0,
+    "report": "reports/test-results.json"
+  },
+  "offline_demo": {
+    "status": "PASS",
+    "requested": "Move C12 closer to U1",
+    "observed": [
+      "C12 moved",
+      "U1 footprint changed",
+      "C17 LCSC ID removed",
+      "C12.2 disconnected"
+    ],
+    "diff_events": 7,
+    "intent_verdict": "FAIL (expected)",
+    "hardware_verdict": "FAIL (expected)",
+    "fixture": "examples/demo"
+  },
+  "package": {
+    "name": "edaguard",
+    "version": "0.1.0-alpha.1",
+    "license": "Apache-2.0",
+    "cli": "edaguard",
+    "dry_run_files": 57,
+    "reports_included": false,
+    "private_project_files_included": false
+  },
+  "naming": {
+    "repository_candidate": "EDA-Guard",
+    "package_candidate": "edaguard",
+    "cli_candidate": "edaguard",
+    "availability_report": "reports/public-release-naming.json",
+    "owner_confirmation_required": false
+  },
+  "not_run": {
+    "github_repository_creation": "PASS",
+    "git_push": "NOT_RUN",
+    "npm_publish": "NOT_RUN",
+    "github_release_publication": "NOT_RUN"
+  },
+  "result": "PUBLIC ALPHA RELEASE CANDIDATE: PASS",
+  "next_action": "Push the committed main branch, verify GitHub Actions, then prepare the v0.1.0-alpha.1 GitHub Release. npm publish remains intentionally out of scope."
+}

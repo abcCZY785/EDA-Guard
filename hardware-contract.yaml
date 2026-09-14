@@ -1,0 +1,35 @@
+schema: edaguard.assertions.v1
+name: Demo hardware contract
+description: The small contract that the requested move must preserve
+strict: true
+rules:
+  - id: DEMO-C12-EXISTS
+    type: component_exists
+    description: C12 must still exist
+    severity: ERROR
+    component: C12
+  - id: DEMO-U1-FOOTPRINT
+    type: property_equals
+    description: U1 footprint must remain QFN-32
+    severity: ERROR
+    component: U1
+    property: footprint
+    expected: QFN-32
+  - id: DEMO-C17-LCSC
+    type: valid_lcsc_id
+    description: C17 must retain a valid LCSC ID
+    severity: ERROR
+    component: C17
+  - id: DEMO-C12-VDD
+    type: net_contains
+    description: C12.2 must remain on +3V3
+    severity: CRITICAL
+    net: +3V3
+    member: C12.2
+  - id: DEMO-C12-U1-DISTANCE
+    type: component_distance
+    description: C12 and U1 centers must remain within 10 mm
+    severity: WARNING
+    component_a: C12
+    component_b: U1
+    max_mm: 10

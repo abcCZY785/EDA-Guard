@@ -1,0 +1,38 @@
+schema: edaguard.assertions.v1
+name: Basic Integrity
+description: Basic component, BOM, connectivity, geometry, and count checks
+strict: true
+rules:
+  - id: HW-C12-EXISTS
+    type: component_exists
+    description: C12 must exist
+    severity: ERROR
+    component: C12
+  - id: HW-U1-FOOTPRINT
+    type: footprint_present
+    description: U1 must have a footprint
+    severity: ERROR
+    component: U1
+  - id: HW-U1-LCSC
+    type: valid_lcsc_id
+    description: U1 must have a valid LCSC ID
+    severity: ERROR
+    component: U1
+  - id: HW-VDD-NET
+    type: net_exists
+    description: The +3V3 net must exist
+    severity: ERROR
+    net: +3V3
+  - id: HW-C12-U1-DISTANCE
+    type: component_distance
+    description: C12 and U1 centers must remain within 10 mm
+    severity: WARNING
+    component_a: C12
+    component_b: U1
+    max_mm: 10
+  - id: HW-J1-EDGE
+    type: component_near_board_edge
+    description: J1 center must remain within 2 mm of the board edge
+    severity: WARNING
+    component: J1
+    max_mm: 2

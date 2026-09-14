@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://edaguard.dev/schemas/semantic-diff.v1.json",
+  "title": "EDA-Guard Semantic Diff v1",
+  "description": "Deterministic, fail-closed semantic comparison of two Gate-A canonical design snapshots.",
+  "type": "object",
+  "required": [
+    "schema",
+    "schema_version",
+    "before_hash",
+    "after_hash",
+    "valid",
+    "zero_diff",
+    "identity",
+    "facet_hashes",
+    "summary",
+    "changes",
+    "errors",
+    "warnings"
+  ],
+  "properties": {
+    "schema": {
+      "const": "edaguard.semantic-diff.v1"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "before_hash": {
+      "type": ["string", "null"]
+    },
+    "after_hash": {
+      "type": ["string", "null"]
+    },
+    "valid": {
+      "type": "boolean"
+    },
+    "zero_diff": {
+      "type": "boolean"
+    },
+    "identity": {
+      "type": "object",
+      "required": ["equal", "before", "after"],
+      "properties": {
+        "equal": {"type": "boolean"},
+        "before": {"$ref": "#/$defs/designIdentity"},
+        "after": {"$ref": "#/$defs/designIdentity"}
+      },
+      "additionalProperties": true
+    },
+    "profiles": {
+      "type": "object",
+      "additionalProperties": {"type": ["string", "null"]}
+    },
+    "facet_hashes": {
+      "type": "object",
+      "required": ["before", "after", "facets", "equal"],
+      "properties": {
+        "before": {"type": "object", "additionalProperties": {"type": ["string", "null"]}},
+        "after": {"type": "object", "additionalProperties": {"type": ["string", "null"]}},
+        "facets": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["before", "after", "equal"],
+            "properties": {
+              "before": {"type": ["string", "null"]},
+              "after": {"type": ["string", "null"]},
+              "equal": {"type": "boolean"}
+            },
+            "additionalProperties": true
+          }
+        },
+        "equal": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    },
+    "summary": {
+      "$ref": "#/$defs/summary"
+    },
+    "property_policy": {
+      "type": "object",
+      "properties": {
+        "semantic": {"type": "array", "items": {"type": "string"}},
+        "informational": {"type": "array", "items": {"type": "string"}},
+        "ignored": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    },
+    "routing": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "connectivity": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "changes": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/change"}
+    },
+    "raw_connectivity_events": {
+      "type": "array",
+      "items": {"type": "object", "additionalProperties": true}
+    },
+    "errors": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "warnings": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  },
+  "$defs": {
+    "designIdentity": {
+      "type": "object",
+      "required": ["project_uuid", "document_uuid", "document_type"],
+      "properties": {
+        "project_uuid": {"type": ["string", "null"]},
+        "document_uuid": {"type": ["string", "null"]},
+        "document_type": {"type": "string", "enum": ["pcb", "schematic", "unknown"]}
+      },
+      "additionalProperties": true
+    },
+    "summary": {
+      "type": "object",
+      "required": ["total_changes", "components", "properties", "bom", "connectivity", "board_rules", "routing", "by_severity"],
+      "properties": {
+        "total_changes": {"type": "integer", "minimum": 0},
+        "components": {"type": "integer", "minimum": 0},
+        "properties": {"type": "integer", "minimum": 0},
+        "bom": {"type": "integer", "minimum": 0},
+        "connectivity": {"type": "integer", "minimum": 0},
+        "board_rules": {"type": "integer", "minimum": 0},
+        "routing": {"type": "integer", "minimum": 0},
+        "by_severity": {
+          "type": "object",
+          "required": ["INFO", "NOTICE", "WARNING", "CRITICAL"],
+          "properties": {
+            "INFO": {"type": "integer", "minimum": 0},
+            "NOTICE": {"type": "integer", "minimum": 0},
+            "WARNING": {"type": "integer", "minimum": 0},
+            "CRITICAL": {"type": "integer", "minimum": 0}
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "change": {
+      "type": "object",
+      "required": ["event_id", "type", "category", "severity", "entity"],
+      "properties": {
+        "event_id": {"type": "string", "pattern": "^EVT-[0-9]{3,}$"},
+        "type": {"type": "string"},
+        "category": {"type": "string", "enum": ["connectivity", "components", "properties", "bom", "board_rules", "routing"]},
+        "severity": {"type": "string", "enum": ["INFO", "NOTICE", "WARNING", "CRITICAL"]},
+        "entity": {"type": "string"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
