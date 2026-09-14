@@ -29,6 +29,10 @@ async function walk(current, relative = '') {
   const entries = await readdir(current, { withFileTypes: true });
   const output = [];
   for (const entry of entries) {
+    // Git internals are never part of the publishable tree and can grow after
+    // every commit; skip them instead of listing repository metadata as local
+    // artifacts in the public report.
+    if (entry.name === '.git') continue;
     const childRelative = relative ? `${relative}/${entry.name}` : entry.name;
     const child = path.join(current, entry.name);
     if (entry.isDirectory()) output.push(...await walk(child, childRelative));

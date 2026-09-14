@@ -138,9 +138,8 @@ This is a public Alpha, not a claim that a PCB is correct.
   thermal analysis, manufacturing checks, or human sign-off.
 - Assertions prove only the supported, declared properties in the input
   snapshot. They do not infer missing electrical meaning.
-- The package metadata intentionally leaves `repository`, `bugs`, and
-  `homepage` unset until the final GitHub owner is confirmed. See the
-  [naming audit](reports/public-release-naming.json).
+- The package metadata points to the confirmed public repository at
+  `github.com/abcCZY785/EDA-Guard`. See the [naming audit](reports/public-release-naming.json).
 
 ## Development and release checks
 

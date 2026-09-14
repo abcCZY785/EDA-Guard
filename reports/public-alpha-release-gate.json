@@ -2,7 +2,7 @@
   "report_schema_version": "0.1.0",
   "gate": "PUBLIC ALPHA RELEASE GATE",
   "status": "PASS",
-  "generated_at": "2026-09-14T15:14:20+08:00",
+  "generated_at": "2026-09-14T15:59:28+08:00",
   "release_candidate": "PASS",
   "core_gates": {
     "basic_capture": "PASS",
@@ -71,14 +71,14 @@
     "package_candidate": "edaguard",
     "cli_candidate": "edaguard",
     "availability_report": "reports/public-release-naming.json",
-    "owner_confirmation_required": true
+    "owner_confirmation_required": false
   },
   "not_run": {
-    "github_repository_creation": "NOT_RUN",
+    "github_repository_creation": "PASS",
     "git_push": "NOT_RUN",
     "npm_publish": "NOT_RUN",
     "github_release_publication": "NOT_RUN"
   },
   "result": "PUBLIC ALPHA RELEASE CANDIDATE: PASS",
-  "next_action": "Await explicit owner/repository confirmation before GitHub creation, git push, npm publish, or release publication."
+  "next_action": "Push the committed main branch, verify GitHub Actions, then prepare the v0.1.0-alpha.1 GitHub Release. npm publish remains intentionally out of scope."
 }

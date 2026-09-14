@@ -3,9 +3,14 @@
   "version": "0.1.0-alpha.1",
   "description": "Safety checks for AI-generated PCB designs: capture, semantic diff, intent lock, and hardware assertions",
   "license": "Apache-2.0",
-  "repository": null,
-  "bugs": null,
-  "homepage": null,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abcCZY785/EDA-Guard.git"
+  },
+  "bugs": {
+    "url": "https://github.com/abcCZY785/EDA-Guard/issues"
+  },
+  "homepage": "https://github.com/abcCZY785/EDA-Guard#readme",
   "type": "module",
   "engines": { "node": ">=20" },
   "bin": { "edaguard": "src/cli.mjs" },

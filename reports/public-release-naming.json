@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1.0",
   "gate": "PUBLIC RELEASE NAMING AUDIT",
-  "checked_at": "2026-09-14T14:57:47+08:00",
+  "checked_at": "2026-09-14T15:59:28+08:00",
   "scope": "availability check only; this is not a trademark or legal clearance",
   "candidates": {
     "repository": {
@@ -11,8 +11,10 @@
         "query": "EDA-Guard in:name",
         "query_url": "https://api.github.com/search/repositories?q=%22EDA-Guard%22+in:name",
         "lexical_matches": 1,
-        "exact_candidate_match": false,
-        "note": "The lexical match is an unrelated repository name; no exact EDA-Guard repository was returned. An owner is still required before creating the repository."
+        "exact_candidate_match": true,
+        "owner": "abcCZY785",
+        "repository_url": "https://github.com/abcCZY785/EDA-Guard",
+        "note": "The confirmed personal owner abcCZY785 created the public repository."
       },
       "recommendation": "keep"
     },
@@ -39,6 +41,6 @@
       "recommendation": "keep"
     }
   },
-  "result": "PASS_WITH_OWNER_CONFIRMATION_REQUIRED",
-  "next_step": "Confirm the GitHub owner and create the public repository before adding repository/bugs/homepage URLs or publishing npm."
+  "result": "PASS",
+  "next_step": "Repository owner is confirmed; keep npm unpublished until explicitly approved."
 }

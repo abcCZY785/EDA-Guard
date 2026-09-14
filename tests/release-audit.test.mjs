@@ -54,14 +54,19 @@ test('all local Markdown links resolve inside the public tree', async () => {
   assert.deepEqual(missing, []);
 });
 
-test('package metadata is publish-ready but does not claim a repository owner', async () => {
+test('package metadata is publish-ready and points to the confirmed repository', async () => {
   const pkg = JSON.parse(await readFile(path.join(ROOT, 'package.json'), 'utf8'));
   assert.equal(pkg.name, 'edaguard');
   assert.equal(pkg.version, '0.1.0-alpha.1');
   assert.equal(pkg.license, 'Apache-2.0');
   assert.equal(pkg.private, undefined);
   assert.equal(pkg.bin.edaguard, 'src/cli.mjs');
-  assert.equal(pkg.repository, null);
+  assert.deepEqual(pkg.repository, {
+    type: 'git',
+    url: 'git+https://github.com/abcCZY785/EDA-Guard.git',
+  });
+  assert.deepEqual(pkg.bugs, { url: 'https://github.com/abcCZY785/EDA-Guard/issues' });
+  assert.equal(pkg.homepage, 'https://github.com/abcCZY785/EDA-Guard#readme');
   assert.ok(Array.isArray(pkg.files) && pkg.files.includes('examples'));
   for (const required of ['README.md', 'LICENSE', 'CHANGELOG.md', 'CONTRIBUTING.md', 'SECURITY.md', 'ROADMAP.md', 'THIRD_PARTY_NOTICES.md']) {
     assert.ok(pkg.files.includes(required), `${required} is not in package.files`);
@@ -74,8 +79,8 @@ test('public Alpha gate report is explicit about what was and was not published'
   assert.equal(gate.result, 'PUBLIC ALPHA RELEASE CANDIDATE: PASS');
   assert.equal(gate.package.reports_included, false);
   assert.equal(gate.package.private_project_files_included, false);
-  assert.equal(gate.naming.owner_confirmation_required, true);
-  assert.equal(gate.not_run.github_repository_creation, 'NOT_RUN');
+  assert.equal(gate.naming.owner_confirmation_required, false);
+  assert.equal(gate.not_run.github_repository_creation, 'PASS');
   assert.equal(gate.not_run.npm_publish, 'NOT_RUN');
 });
 
