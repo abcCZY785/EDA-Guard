@@ -1,0 +1,100 @@
+{
+  "artifact_type": "edaguard.capture",
+  "profile": {
+    "name": "pcb-basic-v1",
+    "domain": "pcb",
+    "schema_version": "0.1.0"
+  },
+  "snapshot": {
+    "schema_version": "0.1.0",
+    "units": { "length": "nm", "angle": "microdegree" },
+    "identity": {
+      "project_uuid": "demo-project",
+      "document_uuid": "demo-pcb",
+      "document_type": "pcb"
+    },
+    "components": [
+      {
+        "identity": { "key": "c12", "unique_id": "demo-c12", "primitive_id": "demo-p-c12", "designator": "C12", "confidence": "high" },
+        "name": "={Value}", "value": "0.1uF", "x_nm": 12000000, "y_nm": 12000000, "rotation_microdegree": 0,
+        "mirror": null, "layer": 1, "footprint_uuid": "fp-c0603", "footprint_name": "C0603",
+        "manufacturer_id": "M-C12", "supplier": "LCSC", "supplier_id": "C10001",
+        "other_property": { "Description": "Decoupling capacitor", "Device": "C", "Package": "0603" },
+        "is_business_component": true
+      },
+      {
+        "identity": { "key": "u1", "unique_id": "demo-u1", "primitive_id": "demo-p-u1", "designator": "U1", "confidence": "high" },
+        "name": "={Value}", "value": "MCU", "x_nm": 20000000, "y_nm": 15000000, "rotation_microdegree": 0,
+        "mirror": null, "layer": 1, "footprint_uuid": "fp-qfn48", "footprint_name": "QFN-48",
+        "manufacturer_id": "M-U1", "supplier": "LCSC", "supplier_id": "C20002",
+        "other_property": { "Description": "Controller", "Device": "MCU", "Package": "QFN-48" },
+        "is_business_component": true
+      },
+      {
+        "identity": { "key": "c17", "unique_id": "demo-c17", "primitive_id": "demo-p-c17", "designator": "C17", "confidence": "high" },
+        "name": "={Value}", "value": "1uF", "x_nm": 15000000, "y_nm": 10000000, "rotation_microdegree": 0,
+        "mirror": null, "layer": 1, "footprint_uuid": "fp-c0603", "footprint_name": "C0603",
+        "manufacturer_id": "M-C17", "supplier": "LCSC", "supplier_id": null,
+        "other_property": { "Description": "Bulk decoupling", "Device": "C", "Package": "0603" },
+        "is_business_component": true
+      }
+    ],
+    "pads": [
+      { "component_primitive_id": "demo-p-c12", "pad_number": "1", "x_nm": 12000000, "y_nm": 12000000, "net": "GND" },
+      { "component_primitive_id": "demo-p-c12", "pad_number": "2", "x_nm": 12000000, "y_nm": 12000000, "net": null },
+      { "component_primitive_id": "demo-p-u1", "pad_number": "1", "x_nm": 20000000, "y_nm": 15000000, "net": "GND" },
+      { "component_primitive_id": "demo-p-u1", "pad_number": "5", "x_nm": 20000000, "y_nm": 15000000, "net": "+3V3" },
+      { "component_primitive_id": "demo-p-c17", "pad_number": "1", "x_nm": 15000000, "y_nm": 10000000, "net": "GND" }
+    ],
+    "connectivity": {
+      "preferred_source": "manufacture_netlist",
+      "manufacture_nets": [
+        { "name": "+3V3", "members": [
+          { "component_identity": "demo-u1", "pin": "5", "pin_name": "VDD" }
+        ] },
+        { "name": "GND", "members": [
+          { "component_identity": "demo-c12", "pin": "1", "pin_name": "1" },
+          { "component_identity": "demo-u1", "pin": "1", "pin_name": "GND" },
+          { "component_identity": "demo-c17", "pin": "1", "pin_name": "1" }
+        ] }
+      ],
+      "pcb_nets": [],
+      "direct_nets": []
+    },
+    "geometry": {
+      "lines": [], "arcs": [], "polylines": [], "regions": [], "pours": [], "fills": [],
+      "board_outline": [{ "kind": "rectangle", "primitive_id": "demo-outline", "layer": 11, "closed": true, "rectangle": { "x_nm": 0, "y_nm": 0, "width_nm": 30000000, "height_nm": 25000000 } }]
+    },
+    "board_bounds": { "min_x_nm": 0, "min_y_nm": 0, "max_x_nm": 30000000, "max_y_nm": 25000000 },
+    "vias": [],
+    "bom": [
+      { "unique_id": "demo-c12", "designator": "C12", "value": "0.1uF", "footprint_uuid": "fp-c0603", "footprint_name": "C0603", "supplier": "LCSC", "supplier_id": "C10001", "manufacturer_id": "M-C12" },
+      { "unique_id": "demo-u1", "designator": "U1", "value": "MCU", "footprint_uuid": "fp-qfn48", "footprint_name": "QFN-48", "supplier": "LCSC", "supplier_id": "C20002", "manufacturer_id": "M-U1" },
+      { "unique_id": "demo-c17", "designator": "C17", "value": "1uF", "footprint_uuid": "fp-c0603", "footprint_name": "C0603", "supplier": "LCSC", "supplier_id": null, "manufacturer_id": "M-C17" }
+    ],
+    "rules": { "minimum_clearance_nm": 200000, "default_line_width_nm": 150000 },
+    "layers": { "layers": [
+      { "id": 1, "name": "Top Layer", "type": "SIGNAL", "layerStatus": 1, "locked": false, "transparency": 0 },
+      { "id": 2, "name": "Bottom Layer", "type": "SIGNAL", "layerStatus": 1, "locked": false, "transparency": 0 }
+    ] },
+    "facet_hashes": {
+      "components": "ee72ba47883edf245c5ef8457caa54b9ef84111723ffd75cc96bfe8411eac008",
+      "pads": "ff3724ada83af1866ada0332b56c51bfa4be63314cc267ddf3f29f02ced41937",
+      "connectivity": "6944d494821c8e28a5bed7f48d3f85ade83943c26a729fe631670d66728f34b1",
+      "geometry": "d9525a6e51e40badad019402e6f3f7a1004a96293b919f0e2ff0ad0d83ccb50b",
+      "vias": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "bom": "dce1bd451b842fb0b3233ec1c9f9390fa4f8ffc8d0ad5cff8ae1e03d107f754e",
+      "rules": "e99eb9535c59a2d734ae4c085491841f2b160f2ee27cc8dc7b3fdaa11323cee6",
+      "layers": "8edb5305469500c56807b66620fb36a6bff0bf0d2a3718dc498ed7dc67c1126f"
+    },
+    "snapshot_hash": "7ca3ef8dd2d9f8cc851c886ce38a3270a9f9ce940da0312d4a2d8637a59d5e14"
+  },
+  "validity": {
+    "valid_snapshot": true,
+    "fail_closed": true,
+    "identity_stable": true,
+    "repeated_core_equal": true,
+    "repeated_reads": 1,
+    "profile_name": "pcb-basic-v1"
+  }
+}

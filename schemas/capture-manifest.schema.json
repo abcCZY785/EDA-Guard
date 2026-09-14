@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://edaguard.dev/schema/capture-manifest.schema.json",
+  "title": "EDA-Guard Capture Manifest",
+  "type": "object",
+  "required": ["manifest_schema_version", "artifact_type", "capture_id", "captured_at", "identity", "design_identity", "runtime", "validity", "facets"],
+  "properties": {
+    "manifest_schema_version": { "type": "string" },
+    "artifact_type": { "const": "edaguard.capture-manifest" },
+    "capture_id": { "type": "string", "minLength": 1 },
+    "captured_at": { "type": "string", "format": "date-time" },
+    "bridge": { "type": "object" },
+    "identity": {
+      "type": "object",
+      "required": ["project_uuid", "document_uuid", "document_type"],
+      "properties": {
+        "project_uuid": { "type": ["string", "null"] },
+        "document_uuid": { "type": ["string", "null"] },
+        "document_type": { "enum": ["pcb", "schematic", "unknown"] }
+      }
+    },
+    "design_identity": {
+      "type": "object",
+      "required": ["project_uuid", "document_uuid", "document_type"],
+      "properties": {
+        "project_uuid": { "type": ["string", "null"] },
+        "document_uuid": { "type": ["string", "null"] },
+        "document_type": { "enum": ["pcb", "schematic", "unknown"] }
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "required": ["bridge_url", "window_id", "captured_at", "source_versions"],
+      "properties": {
+        "bridge_url": { "type": "string" },
+        "window_id": { "type": "string" },
+        "captured_at": { "type": "string", "format": "date-time" },
+        "source_versions": { "type": "object" }
+      }
+    },
+    "profile": { "type": ["object", "null"] },
+    "validity": { "$ref": "canonical-snapshot.schema.json#/$defs/validity" },
+    "facets": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/facet" }
+    }
+  },
+  "$defs": {
+    "facet": {
+      "type": "object",
+      "required": ["facet", "source", "status", "evidence"],
+      "properties": {
+        "facet": { "type": "string" },
+        "source": { "type": "string" },
+        "status": { "enum": ["ok", "verified_empty", "unsupported", "error"] },
+        "evidence": { "enum": ["UNKNOWN", "READ", "REPEATED", "CROSS_VALIDATED", "RESTART_VALIDATED"] },
+        "count": { "type": ["integer", "null"], "minimum": 0 },
+        "hash": { "type": ["string", "null"] },
+        "error": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

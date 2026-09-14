@@ -1,0 +1,49 @@
+{
+  "report_schema_version": "0.1.0",
+  "generated_at": "2026-09-14T09:53:04+08:00",
+  "scope": "sanitized F6 evidence; raw captures remain local and ignored",
+  "f6_a_multi_window": {
+    "status": "PASS",
+    "sequence": ["A1", "B1", "A2", "B2"],
+    "project_slots": { "A": "project-1-redacted", "B": "project-2-redacted" },
+    "profiles": { "A": "pcb-basic-v1", "B": "schematic-basic-v1" },
+    "same_slot_design_hash_equal": { "A1_A2": true, "B1_B2": true },
+    "different_slot_design_hash_distinct": true,
+    "wrong_binding_fail_closed": { "status": "PASS", "evidence": "offline harness" }
+  },
+  "f6_b_document_switching": {
+    "status": "PASS",
+    "sequence": ["schematic", "pcb", "schematic", "pcb"],
+    "project_slot": "project-1-redacted",
+    "expected_document_type_each_step": true,
+    "same_document_design_hash_equal": { "pcb_A1_A2": true, "schematic_B1_B2": true },
+    "restored_document_type": "pcb"
+  },
+  "f6_c_restart": {
+    "status": "PASS",
+    "offline_hash_isolation": "PASS",
+    "bridge_restart": {
+      "status": "PASS",
+      "design_hash_equal": true,
+      "identity_equal": true,
+      "runtime_window_changed": true,
+      "repeat_equal_after_restart": true
+    },
+    "easyeda_application_restart": {
+      "status": "PASS",
+      "preflight": "USER_CONFIRMED_ALL_WINDOWS_CLOSED",
+      "auto_save": false,
+      "baseline_artifact": "reports/live-capture.json",
+      "after_restart_artifact": "reports/live-capture-restart-c.json",
+      "identity_equal": true,
+      "document_type_equal": true,
+      "snapshot_hash_equal": true,
+      "facet_hashes_equal": true,
+      "runtime_window_changed": true,
+      "capture_c_valid": true,
+      "capture_c_repeated_core_equal": true
+    },
+    "restart_comparison_artifact": "reports/restart-comparison.json",
+    "restart_validated_promotion": "RESTART_VALIDATED"
+  }
+}

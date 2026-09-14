@@ -1,0 +1,22 @@
+# Live captures can contain project UUIDs, component metadata and design geometry.
+# Keep them as local evidence unless a fixture has been intentionally sanitized.
+node_modules/
+*.log
+*.tmp
+*.eprj2
+*.eprj2-bak
+.env
+.env.*
+!.env.example
+reports/live-capture*.json
+reports/semantic-diff-live*.json
+reports/intent-live*.json
+reports/compiled-intent*.json
+reports/compiled-intent-pass*.json
+compiled-intent*.json
+reports/assertion-live*.json
+reports/compiled-assertions*.json
+compiled-assertions*.json
+
+# The offline demo's compiled intent is deterministic and intentionally checked in.
+!examples/demo/compiled-intent.json

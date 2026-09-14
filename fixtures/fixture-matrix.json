@@ -1,0 +1,98 @@
+{
+  "schema_version": "0.1.0",
+  "purpose": "Gate A basic snapshot reliability and independent Gate B full capture coverage; status is evidence scope, not a product promise.",
+  "fixtures": [
+    {
+      "id": "F0-empty-pcb",
+      "gate": "A",
+      "description": "New PCB with no components, nets, or routes",
+      "required_facets": ["identity", "pcb_components", "pcb_pads", "pcb_nets", "pcb_drc"],
+      "expected_empty": ["pcb_components", "pcb_pads", "pcb_nets"],
+      "status": "verified_partial",
+      "evidence_level": "READ",
+      "notes": "Prior smoke test verified empty-board DRC and persistence; the populated-project restart gate is now separately verified."
+    },
+    {
+      "id": "F1-basic-populated",
+      "gate": "A",
+      "description": "14-component populated PCB/schematic with 10 nets, 47 pads, tracks, vias, and outline",
+      "profiles": ["pcb-basic-v1", "schematic-basic-v1"],
+      "required_facets": ["components", "pads", "connectivity", "geometry", "vias", "bom"],
+      "status": "verified_partial",
+      "evidence_level": "CROSS_VALIDATED",
+      "notes": "Same-session repeatability and schematic manufacture-netlist/PCB-net name cross-check are proven."
+    },
+    {
+      "id": "F2-board-outline-lines-arcs-polylines",
+      "gate": "B",
+      "description": "Board outline represented by Line, Arc, and Polyline primitives",
+      "required_facets": ["pcb_lines", "pcb_arcs", "pcb_polylines"],
+      "status": "verified_partial",
+      "evidence_level": "READ",
+      "notes": "Polyline outline observed in populated project; line outline observed in controlled test. Arc coverage is not yet proven."
+    },
+    {
+      "id": "F3-copper-pours-regions-fills",
+      "gate": "B",
+      "description": "Copper areas, regions, fills, and pour-derived geometry",
+      "required_facets": ["pcb_pours", "pcb_regions", "pcb_fills"],
+      "status": "not_run",
+      "evidence_level": "UNKNOWN",
+      "notes": "Must be tested before claiming complete physical-state capture."
+    },
+    {
+      "id": "F4-rules-stackup-advanced",
+      "gate": "B",
+      "description": "Net classes, differential pairs, length groups, stackup/material data",
+      "required_facets": ["pcb_rules", "pcb_layers"],
+      "status": "verified_partial",
+      "evidence_level": "READ",
+      "notes": "Rule configuration and layer table read; empty advanced groups and physical stackup need non-empty fixtures."
+    },
+    {
+      "id": "F5-error-unsupported-empty",
+      "gate": "A",
+      "description": "Synthetic contract fixtures separating verified_empty, unsupported, and error",
+      "required_facets": ["status_semantics"],
+      "status": "verified",
+      "evidence_level": "REPEATED",
+      "notes": "Covered by deterministic unit tests without touching EasyEDA."
+    },
+    {
+      "id": "F6-A-window-isolation",
+      "gate": "A",
+      "description": "Two EasyEDA windows with A→B→A→B explicit bindings and wrong-window fail-closed behavior",
+      "required_facets": ["identity_before_after", "window_binding"],
+      "status": "verified",
+      "evidence_level": "REPEATED",
+      "notes": "Live A→B→A→B over two connected projects passed; wrong-binding fail-closed is covered by the offline harness."
+    },
+    {
+      "id": "F6-B-document-switching",
+      "gate": "A",
+      "description": "Same project schematic→PCB→schematic→PCB identity and document-type switching",
+      "required_facets": ["identity_before_after", "document_type", "project_uuid"],
+      "status": "verified",
+      "evidence_level": "REPEATED",
+      "notes": "Live schematic→PCB→schematic→PCB passed in one project and restored PCB."
+    },
+    {
+      "id": "F6-C-restart-stability",
+      "gate": "A",
+      "description": "Bridge restart and EasyEDA restart preserve the canonical design hash",
+      "required_facets": ["identity_before_after", "window_binding", "restart"],
+      "status": "verified",
+      "evidence_level": "RESTART_VALIDATED",
+      "notes": "Full EasyEDA close/relaunch, new-window rediscovery, identity check, Capture C, and facet-level comparison all passed; runtime window identity changed without changing design hashes."
+    },
+    {
+      "id": "H0-H22-hardware-assertions",
+      "gate": "P4",
+      "description": "Deterministic offline Hardware Assertions matrix plus live EasyEDA PASS/FAIL and restoration read-back",
+      "required_facets": ["valid_snapshot", "components", "bom", "connectivity", "geometry"],
+      "status": "verified",
+      "evidence_level": "REPEATED",
+      "notes": "23 H0-H22 scenarios, versioned source/result schemas, strict/capability/identity boundaries, live 8/8 PASS, live 3-FAIL intentional counterexample, and exact clean-hash restoration."
+    }
+  ]
+}

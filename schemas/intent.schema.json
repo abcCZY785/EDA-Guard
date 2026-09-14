@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://edaguard.dev/schemas/intent.schema.json",
+  "title": "EDA-Guard Intent Declaration",
+  "description": "Versioned, default-deny authorization declaration compiled against a Gate-A baseline.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema", "description", "default_action", "required", "allowed", "forbidden"],
+  "properties": {
+    "schema": { "const": "edaguard.intent.v1" },
+    "schema_version": { "type": "string" },
+    "intent_id": { "type": "string", "minLength": 1 },
+    "description": { "type": "string" },
+    "default_action": { "const": "deny" },
+    "default_deny": { "const": true },
+    "baseline": { "$ref": "#/$defs/baseline" },
+    "required": { "type": "array", "items": { "$ref": "#/$defs/rule" } },
+    "allowed": { "type": "array", "items": { "$ref": "#/$defs/rule" } },
+    "forbidden": { "type": "array", "items": { "$ref": "#/$defs/rule" } }
+  },
+  "$defs": {
+    "baseline": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["snapshot_hash", "project_uuid", "document_uuid", "document_type", "profile"],
+      "properties": {
+        "snapshot_hash": { "type": "string", "minLength": 1 },
+        "project_uuid": { "type": "string", "minLength": 1 },
+        "document_uuid": { "type": "string", "minLength": 1 },
+        "document_type": { "enum": ["pcb", "schematic"] },
+        "profile": { "type": "string", "minLength": 1 }
+      }
+    },
+    "selector": {
+      "oneOf": [
+        { "type": "string", "minLength": 1 },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "designator": { "type": "string", "minLength": 1 },
+            "unique_id": { "type": "string", "minLength": 1 },
+            "primitive_id": { "type": "string", "minLength": 1 },
+            "key": { "type": "string", "minLength": 1 }
+          },
+          "minProperties": 1
+        }
+      ]
+    },
+    "rule": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "rule_id": { "type": "string", "minLength": 1 },
+        "category": { "type": "string" },
+        "event": {
+          "oneOf": [
+            { "type": "string", "minLength": 1 },
+            { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1 }
+          ]
+        },
+        "entity": { "$ref": "#/$defs/selector" },
+        "component": { "$ref": "#/$defs/selector" },
+        "field": { "type": "string", "minLength": 1 },
+        "property": { "type": "string", "minLength": 1 },
+        "net": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

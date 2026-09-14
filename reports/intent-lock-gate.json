@@ -1,0 +1,108 @@
+{
+  "report_schema_version": "0.1.0",
+  "gate": "BASIC INTENT LOCK GATE",
+  "status": "PASS",
+  "generated_at": "2026-09-14T12:21:26+08:00",
+  "scope": "Phase 4 Intent Lock MVP",
+  "offline": {
+    "status": "PASS",
+    "command": "npm test",
+    "tests": 57,
+    "passed": 57,
+    "failed": 0,
+    "vectors": "I0-I18",
+    "schema_contract_test": "PASS",
+    "note": "I0-I18 are deterministic contract vectors; the schema test is an additional contract check."
+  },
+  "live_fail": {
+    "status": "PASS",
+    "intent_verification": "FAIL",
+    "profile": "pcb-basic-v1",
+    "intent_source": "fixtures/intent/move-c12.json",
+    "compiled_intent": "local-only reports/compiled-intent-live.json",
+    "before_artifact": "local-only reports/semantic-diff-live-demo-before.json",
+    "after_artifact": "local-only reports/semantic-diff-live-demo-after.json",
+    "diff_artifact": "local-only reports/semantic-diff-live-demo.json",
+    "result_artifact": "local-only reports/intent-live-fail.json",
+    "before_valid_snapshot": true,
+    "after_valid_snapshot": true,
+    "baseline_match": true,
+    "semantic_events": 5,
+    "summary": { "allowed": 1, "denied": 4, "unexpected": 0, "missing_required": 0 },
+    "event_decisions": [
+      { "event_id": "EVT-001", "event": "connectivity_member_removed", "entity": "C12", "decision": "DENIED", "reason": "FORBIDDEN_RULE", "matched_rule_id": "DENY-001" },
+      { "event_id": "EVT-002", "event": "component_moved", "entity": "C12", "decision": "ALLOWED", "reason": "REQUIRED_OR_ALLOWED_RULE", "matched_rule_id": "REQ-001" },
+      { "event_id": "EVT-003", "event": "property_changed", "entity": "C17", "field": "supplierId", "decision": "DENIED", "reason": "FORBIDDEN_RULE", "matched_rule_id": "DENY-005" },
+      { "event_id": "EVT-004", "event": "property_changed", "entity": "U1", "field": "footprint", "decision": "DENIED", "reason": "FORBIDDEN_RULE", "matched_rule_id": "DENY-005" },
+      { "event_id": "EVT-005", "event": "bom_supplier_id_changed", "entity": "C17", "decision": "DENIED", "reason": "FORBIDDEN_RULE", "matched_rule_id": "DENY-002" }
+    ],
+    "note": "The supplier removal is intentionally visible in both component-property and BOM views; the verifier audits both events."
+  },
+  "live_pass": {
+    "status": "PASS",
+    "intent_verification": "PASS",
+    "profile": "pcb-basic-v1",
+    "intent_source": "fixtures/intent/move-c12.json",
+    "compiled_intent": "local-only reports/compiled-intent-pass.json",
+    "before_artifact": "local-only reports/intent-live-pass-before.json",
+    "after_artifact": "local-only reports/intent-live-pass-after.json",
+    "diff_artifact": "local-only reports/intent-live-pass-diff.json",
+    "result_artifact": "local-only reports/intent-live-pass-result.json",
+    "before_valid_snapshot": true,
+    "after_valid_snapshot": true,
+    "baseline_match": true,
+    "semantic_events": 1,
+    "summary": { "allowed": 1, "denied": 0, "unexpected": 0, "missing_required": 0 },
+    "event_decisions": [
+      { "event_id": "EVT-001", "event": "component_moved", "entity": "C12", "decision": "ALLOWED", "reason": "REQUIRED_OR_ALLOWED_RULE", "matched_rule_id": "REQ-001" }
+    ],
+    "note": "Real EasyEDA edit: C12 moved 300 mil (7.620 mm); no other semantic event was observed."
+  },
+  "baseline_bindings": {
+    "live_fail_baseline_hash": "26094345530875aae177bc4578c6d8d57dc9933025021b566b770582e7648bd6",
+    "live_fail_after_hash": "1bc19dd31644d1b5123d9e5dd843db8db5b28946642752350186d27239d6b933",
+    "live_pass_baseline_hash": "26094345530875aae177bc4578c6d8d57dc9933025021b566b770582e7648bd6",
+    "live_pass_after_hash": "02d2f9628d03dc26b73e10acb8f0085fe58c6e5bf0f1f4941f6e7a7b1ce1c6d1",
+    "restored_clean_hash": "6c1d410c17af7f4d55a1a8963dea688f0cfa75e42a997731a00a1546352b395d"
+  },
+  "restoration": {
+    "status": "PASS",
+    "capture_artifact": "local-only reports/intent-live-restored.json",
+    "capture_manifest": "local-only reports/intent-live-restored.manifest.json",
+    "original_clean_artifact": "local-only reports/semantic-diff-live-before.json",
+    "hash_equal": true,
+    "facet_hashes_equal": true,
+    "identity_equal": true,
+    "semantic_diff": "NO DESIGN CHANGES",
+    "explicit_save_called": false,
+    "note": "Demo mutations were reversed through documented EasyEDA API calls and read back; Intent Lock itself only consumed JSON and made no EasyEDA calls."
+  },
+  "criteria": [
+    { "id": "schema-versioned", "status": "PASS", "summary": "Versioned edaguard.intent.v1 and edaguard.intent-result.v1 schemas are present." },
+    { "id": "baseline-binding", "status": "PASS", "summary": "Compiled intents bind snapshot hash, project/document identity, document type, and profile." },
+    { "id": "identity-binding", "status": "PASS", "summary": "Verification fails closed for a baseline hash or project/document mismatch." },
+    { "id": "selector-compilation", "status": "PASS", "summary": "Designator selectors resolve to frozen canonical identity; unknown and ambiguous selectors fail." },
+    { "id": "canonical-identity", "status": "PASS", "summary": "A post-compile designator change still matches the original unique identity." },
+    { "id": "default-deny", "status": "PASS", "summary": "Events with no explicit authorization are UNEXPECTED." },
+    { "id": "allowed-rules", "status": "PASS", "summary": "Explicit allowed selectors authorize matching Semantic Diff events." },
+    { "id": "required-rules", "status": "PASS", "summary": "Missing required events fail even when no unexpected event exists." },
+    { "id": "forbidden-rules", "status": "PASS", "summary": "Forbidden selectors produce DENIED decisions." },
+    { "id": "conflict-detection", "status": "PASS", "summary": "Overlapping allow/required and forbidden scopes are INVALID_POLICY." },
+    { "id": "missing-required", "status": "PASS", "summary": "Required result records identify each missing rule." },
+    { "id": "unexpected-changes", "status": "PASS", "summary": "Each unmatched event is retained with DEFAULT_DENY reason." },
+    { "id": "deterministic-verification", "status": "PASS", "summary": "Repeated verification is byte-stable and event IDs are deterministic." },
+    { "id": "machine-output", "status": "PASS", "summary": "JSON result retains event ID, matched rule IDs, decisions, and reasons." },
+    { "id": "human-output", "status": "PASS", "summary": "Renderer exposes required, allowed, unexpected, and summary sections." },
+    { "id": "offline-i0-i18", "status": "PASS", "summary": "All I0-I18 offline acceptance vectors pass." },
+    { "id": "live-demo", "status": "PASS", "summary": "Real EasyEDA FAIL and move-only PASS paths both completed with valid captures." },
+    { "id": "no-intent-mutation", "status": "PASS", "summary": "Intent compile/verify never calls EasyEDA or saves, undoes, repairs, or rolls back a design." }
+  ],
+  "excluded": [
+    "Hardware Assertions",
+    "electrical or placement quality judgement",
+    "automatic rollback, repair, save, or undo",
+    "advanced copper, differential-pair, RF, stackup, and detailed DRC assertions"
+  ],
+  "result": "BASIC INTENT LOCK GATE: PASS",
+  "next_phase": "Hardware Assertions MVP"
+}

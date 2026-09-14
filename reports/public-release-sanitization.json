@@ -1,0 +1,207 @@
+{
+  "schema_version": "0.1.0",
+  "gate": "PUBLIC RELEASE SANITIZATION",
+  "status": "PASS",
+  "scan_scope": "publishable repository files; local-only evidence is excluded by policy",
+  "repository_root": "<repository>",
+  "scanned_files": 79,
+  "excluded_local_files": [
+    {
+      "path": "reports/assertion-live-baseline.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/assertion-live-baseline.manifest.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/assertion-live-fail-after.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/assertion-live-fail-after.manifest.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/assertion-live-fail-result.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/assertion-live-pass.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/assertion-live-restore-diff.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/assertion-live-restored-result.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/assertion-live-restored.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/assertion-live-restored.manifest.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/assertion-live-rules.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/compiled-assertions-live-pass.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/compiled-intent-live.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/compiled-intent-pass.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/intent-live-current.cli.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/intent-live-current.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/intent-live-current.manifest.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/intent-live-fail.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/intent-live-pass-after.cli.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/intent-live-pass-after.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/intent-live-pass-after.manifest.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/intent-live-pass-before.cli.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/intent-live-pass-before.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/intent-live-pass-before.manifest.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/intent-live-pass-diff.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/intent-live-pass-result-direct.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/intent-live-pass-result.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/intent-live-restored-diff.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/intent-live-restored.cli.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/intent-live-restored.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/intent-live-restored.manifest.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/live-capture-no-drc.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/live-capture-restart-c.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/live-capture-restart-c.manifest.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/live-capture-schematic.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/live-capture-schematic.manifest.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/live-capture.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/live-capture.manifest.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/semantic-diff-live-before.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/semantic-diff-live-before.manifest.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/semantic-diff-live-demo-after.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/semantic-diff-live-demo-after.manifest.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/semantic-diff-live-demo-before.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/semantic-diff-live-demo-before.manifest.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/semantic-diff-live-demo.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/semantic-diff-live-restored.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    },
+    {
+      "path": "reports/semantic-diff-live-restored.manifest.json",
+      "reason": "raw-live-capture-or-runtime-report"
+    }
+  ],
+  "findings": [],
+  "checks": {
+    "absolute_paths": true,
+    "credentials": true,
+    "runtime_ids": true,
+    "private_project_files": true
+  },
+  "result": "PUBLIC RELEASE SANITIZATION: PASS",
+  "generated_at": "2026-09-14T07:14:12.594Z"
+}

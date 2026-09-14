@@ -1,0 +1,155 @@
+{
+  "schema": "edaguard.intent.v1",
+  "schema_version": "0.1.0",
+  "intent_id": "demo-move-c12",
+  "description": "Move C12 closer to U1 without changing circuit semantics or BOM",
+  "compiled": true,
+  "valid": true,
+  "default_action": "deny",
+  "default_deny": true,
+  "baseline": {
+    "snapshot_hash": "d55d68caeeb1f84ac728b93b66d7d14b384633e657628b9d60208509a8ab51c2",
+    "project_uuid": "demo-project",
+    "document_uuid": "demo-pcb",
+    "document_type": "pcb",
+    "profile": "pcb-basic-v1"
+  },
+  "required": [
+    {
+      "id": "DEMO-REQ-C12-MOVE",
+      "kind": "required",
+      "category": null,
+      "event": "component_moved",
+      "event_types": [
+        "component_moved"
+      ],
+      "entity": "C12",
+      "component": "C12",
+      "field": null,
+      "net": null,
+      "selector_source": "C12",
+      "resolved_identity": {
+        "key": "c12",
+        "unique_id": "demo-c12",
+        "primitive_id": "demo-p-c12",
+        "designator": "C12"
+      },
+      "resolved_label": "C12",
+      "match_method": "designator",
+      "match_key": "C12"
+    }
+  ],
+  "allowed": [
+    {
+      "id": "DEMO-ALLOW-C12-MOVE",
+      "kind": "allowed",
+      "category": null,
+      "event": "component_moved",
+      "event_types": [
+        "component_moved"
+      ],
+      "entity": "C12",
+      "component": "C12",
+      "field": null,
+      "net": null,
+      "selector_source": "C12",
+      "resolved_identity": {
+        "key": "c12",
+        "unique_id": "demo-c12",
+        "primitive_id": "demo-p-c12",
+        "designator": "C12"
+      },
+      "resolved_label": "C12",
+      "match_method": "designator",
+      "match_key": "C12"
+    }
+  ],
+  "forbidden": [
+    {
+      "id": "DEMO-DENY-CONNECTIVITY",
+      "kind": "forbidden",
+      "category": "connectivity",
+      "event": null,
+      "event_types": [],
+      "entity": null,
+      "component": null,
+      "field": null,
+      "net": null,
+      "selector_source": null,
+      "resolved_identity": null,
+      "resolved_label": null,
+      "match_method": null,
+      "match_key": null
+    },
+    {
+      "id": "DEMO-DENY-BOM",
+      "kind": "forbidden",
+      "category": "bom",
+      "event": null,
+      "event_types": [],
+      "entity": null,
+      "component": null,
+      "field": null,
+      "net": null,
+      "selector_source": null,
+      "resolved_identity": null,
+      "resolved_label": null,
+      "match_method": null,
+      "match_key": null
+    },
+    {
+      "id": "DEMO-DENY-PROPERTIES",
+      "kind": "forbidden",
+      "category": "properties",
+      "event": null,
+      "event_types": [],
+      "entity": null,
+      "component": null,
+      "field": null,
+      "net": null,
+      "selector_source": null,
+      "resolved_identity": null,
+      "resolved_label": null,
+      "match_method": null,
+      "match_key": null
+    },
+    {
+      "id": "DEMO-DENY-ADDITIONS",
+      "kind": "forbidden",
+      "category": null,
+      "event": "component_added",
+      "event_types": [
+        "component_added"
+      ],
+      "entity": null,
+      "component": null,
+      "field": null,
+      "net": null,
+      "selector_source": null,
+      "resolved_identity": null,
+      "resolved_label": null,
+      "match_method": null,
+      "match_key": null
+    },
+    {
+      "id": "DEMO-DENY-REMOVALS",
+      "kind": "forbidden",
+      "category": null,
+      "event": "component_removed",
+      "event_types": [
+        "component_removed"
+      ],
+      "entity": null,
+      "component": null,
+      "field": null,
+      "net": null,
+      "selector_source": null,
+      "resolved_identity": null,
+      "resolved_label": null,
+      "match_method": null,
+      "match_key": null
+    }
+  ],
+  "errors": [],
+  "warnings": []
+}

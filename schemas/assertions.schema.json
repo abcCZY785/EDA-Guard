@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://edaguard.dev/schemas/assertions.schema.json",
+  "title": "EDA-Guard Hardware Assertions",
+  "description": "Offline assertions compiled against a valid canonical capture.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema", "name", "rules"],
+  "properties": {
+    "schema": { "const": "edaguard.assertions.v1" },
+    "schema_version": { "type": "string" },
+    "name": { "type": "string", "minLength": 1 },
+    "description": { "type": "string" },
+    "strict": { "type": "boolean", "default": true },
+    "baseline": { "type": "object", "additionalProperties": true },
+    "rules": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/rule" }
+    }
+  },
+  "$defs": {
+    "selector": {
+      "oneOf": [
+        { "type": "string", "minLength": 1 },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "minProperties": 1,
+          "properties": {
+            "designator": { "type": "string", "minLength": 1 },
+            "unique_id": { "type": "string", "minLength": 1 },
+            "primitive_id": { "type": "string", "minLength": 1 },
+            "key": { "type": "string", "minLength": 1 }
+          }
+        }
+      ]
+    },
+    "rule": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "type", "description", "severity"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "rule_id": { "type": "string", "minLength": 1 },
+        "type": { "type": "string", "minLength": 1 },
+        "description": { "type": "string" },
+        "severity": { "enum": ["INFO", "WARNING", "ERROR", "CRITICAL"] },
+        "component": { "$ref": "#/$defs/selector" },
+        "component_a": { "$ref": "#/$defs/selector" },
+        "component_b": { "$ref": "#/$defs/selector" },
+        "property": { "type": "string" },
+        "field": { "type": "string" },
+        "expected": {},
+        "pattern": { "type": "string", "maxLength": 256 },
+        "flags": { "type": "string" },
+        "net": { "type": "string" },
+        "member": {},
+        "pin": {},
+        "max_nm": { "type": "integer", "minimum": 0 },
+        "max_mm": { "type": "number", "minimum": 0 },
+        "min": { "type": "integer", "minimum": 0 },
+        "max": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "report_schema_version": "0.1.0",
+  "gate": "BASIC SEMANTIC DIFF GATE",
+  "status": "PASS",
+  "generated_at": "2026-09-14T11:38:05+08:00",
+  "scope": "Phase 3 Basic Semantic Diff MVP",
+  "offline": {
+    "status": "PASS",
+    "command": "npm test",
+    "tests": 37,
+    "passed": 37,
+    "failed": 0,
+    "vectors": "D0-D15",
+    "note": "Deterministic contract tests; they do not replace live EasyEDA evidence."
+  },
+  "live_demo": {
+    "status": "PASS",
+    "project": "redacted-independent-test-project",
+    "profile": "pcb-basic-v1",
+    "before_artifact": "reports/semantic-diff-live-demo-before.json",
+    "before_manifest": "reports/semantic-diff-live-demo-before.manifest.json",
+    "after_artifact": "reports/semantic-diff-live-demo-after.json",
+    "after_manifest": "reports/semantic-diff-live-demo-after.manifest.json",
+    "diff_artifact": "reports/semantic-diff-live-demo.json",
+    "before_valid_snapshot": true,
+    "after_valid_snapshot": true,
+    "identity_equal": true,
+    "repeat_before_equal": true,
+    "repeat_after_equal": true,
+    "snapshot_hashes": {
+      "before": "26094345530875aae177bc4578c6d8d57dc9933025021b566b770582e7648bd6",
+      "after": "1bc19dd31644d1b5123d9e5dd843db8db5b28946642752350186d27239d6b933"
+    },
+    "semantic_events": 5,
+    "event_types": [
+      "connectivity_member_removed",
+      "component_moved",
+      "property_changed",
+      "property_changed",
+      "bom_supplier_id_changed"
+    ],
+    "summary": {
+      "components": 1,
+      "properties": 2,
+      "bom": 1,
+      "connectivity": 1,
+      "board_rules": 0,
+      "routing": 0,
+      "by_severity": {
+        "INFO": 0,
+        "NOTICE": 1,
+        "WARNING": 3,
+        "CRITICAL": 1
+      }
+    },
+    "facet_hashes": {
+      "before": {
+        "components": "8c684175b291ef15056821941f1d9843c35c9f80ad5c6072aa779993da15da92",
+        "pads": "52fc2384d02fb409f584e4a9db1a278fe3aab22e5ddec33d315749ba6c1f007d",
+        "connectivity": "72805ab13dec760a6560e5564615dc1eaf73ec9ccd867156ba47acc132325d3b",
+        "geometry": "aa736700751b4a740e1761384bf1d11ea91a89b22143b3811fb1e29694d76b44",
+        "vias": "7cf758b285621cae4ef3727b1531d20a6c39b08308b26832fcddc6a73f2e40b8",
+        "bom": "c8d60e63b015da28e98239f3f5857fe113d4a92a0250e4938f5207e47bc7771e",
+        "rules": "85d97bd7df8ad5ed83daa4704736a230d6e242222c28320579a199abe2a04af9",
+        "layers": "2e95c3a87099b4646fada047bbbd497a4c1bc4c27323bef22451a3991052dc2a"
+      },
+      "after": {
+        "components": "2657b1542b87b6393046d7d296784f17f16d17ece294f141bd2a9b0db8262f34",
+        "pads": "f02185c65299a72849b53c04cab819e44517373a5399197ad20ccd5d403e0a5d",
+        "connectivity": "72805ab13dec760a6560e5564615dc1eaf73ec9ccd867156ba47acc132325d3b",
+        "geometry": "aa736700751b4a740e1761384bf1d11ea91a89b22143b3811fb1e29694d76b44",
+        "vias": "7cf758b285621cae4ef3727b1531d20a6c39b08308b26832fcddc6a73f2e40b8",
+        "bom": "dea241478d1d7dd3ca22740be40fb483e38feb9c8f2e3fce2db6ae4a6e2174e9",
+        "rules": "85d97bd7df8ad5ed83daa4704736a230d6e242222c28320579a199abe2a04af9",
+        "layers": "2e95c3a87099b4646fada047bbbd497a4c1bc4c27323bef22451a3991052dc2a"
+      },
+      "equal": {
+        "components": false,
+        "pads": false,
+        "connectivity": true,
+        "geometry": true,
+        "vias": true,
+        "bom": false,
+        "rules": true,
+        "layers": true
+      }
+    },
+    "connectivity_source_note": "The current pcb_Nets getter returned stable net names with empty pin arrays. Diff conservatively reconstructed members from canonical pad net/number data; the live C12.2 removal was therefore reported while the net-name facet hash remained equal.",
+    "demo_mutations": [
+      "move C12 by 300 mil",
+      "change U1 documented Footprint property",
+      "clear C17 supplierId",
+      "remove C12.2 from $1N12"
+    ],
+    "footprint_note": "The current official API exposes a footprint getter but no documented footprint-association setter. The live demo therefore changed the documented otherProperty.Footprint field through pcb_PrimitiveComponent.modify; Diff reports U1.footprint while the association UUID remains unchanged."
+  },
+  "restoration": {
+    "status": "PASS",
+    "explicit_save_called": false,
+    "restored_artifact": "reports/semantic-diff-live-restored.json",
+    "original_clean_artifact": "reports/semantic-diff-live-before.json",
+    "original_hash": "6c1d410c17af7f4d55a1a8963dea688f0cfa75e42a997731a00a1546352b395d",
+    "restored_hash": "6c1d410c17af7f4d55a1a8963dea688f0cfa75e42a997731a00a1546352b395d",
+    "hash_equal": true,
+    "facet_hashes_equal": true,
+    "semantic_diff": "NO DESIGN CHANGES",
+    "note": "The test did not call EasyEDA save. The independent demo state was reversed through documented API mutations and read back to the exact original canonical hash."
+  },
+  "criteria": [
+    { "id": "schema-versioned", "status": "PASS", "summary": "Machine output uses edaguard.semantic-diff.v1 and a JSON Schema contract." },
+    { "id": "identity-safe-matching", "status": "PASS", "summary": "Components match by unique_id then primitive_id; designator-only matches fail as AMBIGUOUS_MATCH." },
+    { "id": "component-events", "status": "PASS", "summary": "Added, removed, moved and rotated component events are deterministic." },
+    { "id": "property-policy", "status": "PASS", "summary": "Semantic, informational and ignored property classes are explicit." },
+    { "id": "bom-events", "status": "PASS", "summary": "BOM add/remove and property or supplier ID changes are reported." },
+    { "id": "connectivity-events", "status": "PASS", "summary": "Preferred-source nets are normalized; member changes and pin reassignment aggregation retain raw events." },
+    { "id": "board-rules-events", "status": "PASS", "summary": "Observed bounds, outline, layers and rule leaves are reported without quality judgement." },
+    { "id": "routing-summary", "status": "PASS", "summary": "Routing changes expose aggregate segments, vias, length and layers, with a conservative fallback." },
+    { "id": "deterministic-renderer", "status": "PASS", "summary": "Text and --json CLI outputs are stable; zero diff renders NO DESIGN CHANGES." },
+    { "id": "offline-d0-d15", "status": "PASS", "summary": "All D0-D15 offline acceptance vectors pass." },
+    { "id": "live-before-after", "status": "PASS", "summary": "Both live captures are valid, repeated reads agree, identity is equal, and five intentional events are explained." },
+    { "id": "runtime-design-separation", "status": "PASS", "summary": "Window, Bridge session, timestamps and runtime metadata are excluded from semantic design hashes." }
+  ],
+  "excluded": [
+    "Intent Lock",
+    "Hardware Assertions",
+    "AI judgement or quality scoring",
+    "advanced copper, differential-pair, RF, placement and autorouting semantics"
+  ],
+  "result": "BASIC SEMANTIC DIFF GATE: PASS",
+  "next_phase": "Intent Lock"
+}
