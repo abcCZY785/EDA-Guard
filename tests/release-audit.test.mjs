@@ -79,8 +79,10 @@ test('public Alpha gate report is explicit about what was and was not published'
   assert.equal(gate.result, 'PUBLIC ALPHA RELEASE CANDIDATE: PASS');
   assert.equal(gate.package.reports_included, false);
   assert.equal(gate.package.private_project_files_included, false);
+  assert.equal(gate.release_checks.github_actions, 'PASS');
   assert.equal(gate.naming.owner_confirmation_required, false);
   assert.equal(gate.not_run.github_repository_creation, 'PASS');
+  assert.equal(gate.not_run.git_push, 'PASS');
   assert.equal(gate.not_run.npm_publish, 'NOT_RUN');
 });
 

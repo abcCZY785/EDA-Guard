@@ -2,7 +2,7 @@
   "report_schema_version": "0.1.0",
   "gate": "PUBLIC ALPHA RELEASE GATE",
   "status": "PASS",
-  "generated_at": "2026-09-14T15:59:28+08:00",
+  "generated_at": "2026-09-14T17:42:34+08:00",
   "release_candidate": "PASS",
   "core_gates": {
     "basic_capture": "PASS",
@@ -34,7 +34,8 @@
     "package_metadata": "PASS",
     "package_dry_run": "PASS",
     "license_audit": "PASS",
-    "runtime_dependencies": 0
+    "runtime_dependencies": 0,
+    "github_actions": "PASS"
   },
   "tests": {
     "command": "npm test",
@@ -75,7 +76,7 @@
   },
   "not_run": {
     "github_repository_creation": "PASS",
-    "git_push": "NOT_RUN",
+    "git_push": "PASS",
     "npm_publish": "NOT_RUN",
     "github_release_publication": "NOT_RUN"
   },
