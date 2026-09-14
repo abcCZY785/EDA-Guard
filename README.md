@@ -2,6 +2,8 @@
 
 **Safety checks for AI-generated PCB designs.**
 
+[中文版 / README_CN.md](README_CN.md)
+
 > Your AI changed the PCB. EDA-Guard tells you what it actually changed.
 
 EDA-Guard turns an AI-assisted PCB edit into a reviewable chain:

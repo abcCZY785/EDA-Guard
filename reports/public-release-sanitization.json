@@ -4,7 +4,7 @@
   "status": "PASS",
   "scan_scope": "publishable repository files; local-only evidence is excluded by policy",
   "repository_root": "<repository>",
-  "scanned_files": 79,
+  "scanned_files": 80,
   "excluded_local_files": [
     {
       "path": "reports/assertion-live-baseline.json",
@@ -203,5 +203,5 @@
     "private_project_files": true
   },
   "result": "PUBLIC RELEASE SANITIZATION: PASS",
-  "generated_at": "2026-09-14T07:59:11.206Z"
+  "generated_at": "2026-09-14T12:12:32.364Z"
 }

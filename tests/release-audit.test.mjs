@@ -68,7 +68,7 @@ test('package metadata is publish-ready and points to the confirmed repository',
   assert.deepEqual(pkg.bugs, { url: 'https://github.com/abcCZY785/EDA-Guard/issues' });
   assert.equal(pkg.homepage, 'https://github.com/abcCZY785/EDA-Guard#readme');
   assert.ok(Array.isArray(pkg.files) && pkg.files.includes('examples'));
-  for (const required of ['README.md', 'LICENSE', 'CHANGELOG.md', 'CONTRIBUTING.md', 'SECURITY.md', 'ROADMAP.md', 'THIRD_PARTY_NOTICES.md']) {
+  for (const required of ['README.md', 'README_CN.md', 'LICENSE', 'CHANGELOG.md', 'CONTRIBUTING.md', 'SECURITY.md', 'ROADMAP.md', 'THIRD_PARTY_NOTICES.md']) {
     assert.ok(pkg.files.includes(required), `${required} is not in package.files`);
   }
 });

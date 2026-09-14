@@ -2,7 +2,7 @@
   "report_schema_version": "0.1.0",
   "gate": "PUBLIC ALPHA RELEASE GATE",
   "status": "PASS",
-  "generated_at": "2026-09-14T17:46:37+08:00",
+  "generated_at": "2026-09-14T20:12:04+08:00",
   "release_candidate": "PASS",
   "core_gates": {
     "basic_capture": "PASS",
@@ -20,7 +20,7 @@
   "release_checks": {
     "public_tree_sanitization": "PASS",
     "sanitization_report": "reports/public-release-sanitization.json",
-    "publishable_files_scanned": 79,
+    "publishable_files_scanned": 80,
     "local_artifacts_excluded": 47,
     "no_publishable_absolute_paths": "PASS",
     "no_publishable_credentials": "PASS",
@@ -64,7 +64,7 @@
     "version": "0.1.0-alpha.1",
     "license": "Apache-2.0",
     "cli": "edaguard",
-    "dry_run_files": 57,
+    "dry_run_files": 58,
     "reports_included": false,
     "private_project_files_included": false
   },
